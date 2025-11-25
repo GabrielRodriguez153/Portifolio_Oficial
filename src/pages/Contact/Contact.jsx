@@ -16,6 +16,7 @@ const Contact = () => {
       email: e.target.email.value,
       subject: e.target.subject.value,
       message: e.target.message.value,
+      date: new Date().toLocaleString('pt-BR')
     };
 
     try {
@@ -57,7 +58,7 @@ const Contact = () => {
   const socialLinks = [
     { 
       icon: <FaLinkedin className="text-lg" />, 
-      url: "https://www.linkedin.com/in/gabrielhrodriguez/" 
+      url: "https://linkedin.com/in/seu-perfil" 
     },
     { 
       icon: <FaGithub className="text-lg" />, 
