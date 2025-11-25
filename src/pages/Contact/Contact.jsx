@@ -1,31 +1,67 @@
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
+
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Mensagem enviada com sucesso! Entrarei em contato em breve.");
-    e.target.reset();
+    setIsLoading(true);
+    setMessage('');
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      subject: e.target.subject.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      await emailjs.send(
+        'service_te6btmh', 
+        'template_lsd3cad',
+        formData,
+        '2tFmtr9gTxC4bne5i'
+      );
+
+      setMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      e.target.reset();
+    } catch (error) {
+      console.error('Erro ao enviar email:', error);
+      setMessage('Erro ao enviar mensagem. Tente novamente ou me envie um email diretamente.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
     {
-      icon: "fas fa-envelope",
+      icon: <FaEnvelope className="text-orange-500 text-xl" />,
       title: "E-mail",
       value: "gabrodriguez153@gmail.com",
     },
     {
-      icon: "fas fa-phone",
+      icon: <FaPhone className="text-orange-500 text-xl" />,
       title: "Telefone",
       value: "(13) 99695-2931",
     },
     {
-      icon: "fas fa-map-marker-alt",
+      icon: <FaMapMarkerAlt className="text-orange-500 text-xl" />,
       title: "Localização",
       value: "Registro, SP - Brasil",
     },
   ];
 
   const socialLinks = [
-    { icon: "fab fa-linkedin-in", url: "#" },
-    { icon: "fab fa-github", url: "#" },
+    { 
+      icon: <FaLinkedin className="text-lg" />, 
+      url: "https://www.linkedin.com/in/gabrielhrodriguez/" 
+    },
+    { 
+      icon: <FaGithub className="text-lg" />, 
+      url: "https://github.com/GabrielRodriguez153" 
+    },
   ];
 
   return (
@@ -41,6 +77,16 @@ const Contact = () => {
           Vamos trabalhar juntos! Entre em contato para discutir seu próximo
           projeto.
         </p>
+
+        {message && (
+          <div className={`max-w-2xl mx-auto mb-6 p-4 rounded-lg text-center ${
+            message.includes('Erro') 
+              ? 'bg-red-100 text-red-700 border border-red-300' 
+              : 'bg-green-100 text-green-700 border border-green-300'
+          }`}>
+            {message}
+          </div>
+        )}
 
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="lg:w-1/2">
@@ -58,6 +104,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Seu nome"
                   required
@@ -74,6 +121,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="seu@email.com"
                   required
@@ -90,6 +138,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Assunto da mensagem"
                   required
@@ -105,6 +154,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows="5"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Sua mensagem..."
@@ -114,15 +164,16 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors shadow-lg"
+                disabled={isLoading}
+                className="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors shadow-lg disabled:bg-orange-300 disabled:cursor-not-allowed"
               >
-                Enviar Mensagem
+                {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
               </button>
             </form>
           </div>
 
           <div className="lg:w-1/2">
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-white p-8 rounded-2xl shadow-lg h-full">
               <h3 className="text-2xl font-bold mb-6">
                 Informações de Contato
               </h3>
@@ -131,7 +182,7 @@ const Contact = () => {
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start">
                     <div className="bg-orange-500/10 p-3 rounded-lg mr-4">
-                      <i className={`${info.icon} text-orange-500 text-xl`}></i>
+                      {info.icon}
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">{info.title}</h4>
@@ -148,9 +199,11 @@ const Contact = () => {
                     <a
                       key={index}
                       href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-gray-100 p-4 rounded-xl text-gray-700 hover:bg-orange-500 hover:text-white transition-colors text-lg"
                     >
-                      <i className={social.icon}></i>
+                      {social.icon}
                     </a>
                   ))}
                 </div>
