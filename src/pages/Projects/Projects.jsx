@@ -1,4 +1,5 @@
 import { projectsData } from "../../data/projectsData";
+import { FaGithub, FaArrowRight, FaGlobe } from "react-icons/fa";
 
 const Projects = () => {
   return (
@@ -73,7 +74,7 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <a
             href="#"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
@@ -81,7 +82,7 @@ const Projects = () => {
             <span>Ver Todos os Projetos</span>
             <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );
