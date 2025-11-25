@@ -29,8 +29,7 @@ const Projects = () => {
                 className={`h-48 relative bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}
               >
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-500"></div>
-                
-                {/* Ícone como componente React */}
+
                 <project.icon className="text-white text-6xl z-10 transform group-hover:scale-110 transition-transform duration-500" />
 
                 <div className="absolute top-4 right-4">
@@ -70,35 +69,10 @@ const Projects = () => {
                     <FaGithub className="text-lg group-hover/link:scale-110 transition-transform duration-300" />
                     <span>Código</span>
                   </a>
-                  
-                  {/* Link de Demo se existir */}
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-orange-600 transition-all duration-300 group/link"
-                    >
-                      <FaGlobe className="text-lg group-hover/link:scale-110 transition-transform duration-300" />
-                      <span>Demo</span>
-                    </a>
-                  )}
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <a
-            href="https://github.com/GabrielRodriguez153?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 group"
-          >
-            <span>Ver Todos os Projetos</span>
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
-          </a>
         </div>
       </div>
     </section>
