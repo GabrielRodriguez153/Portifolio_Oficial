@@ -29,13 +29,13 @@ const Projects = () => {
                 className={`h-48 relative bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}
               >
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-500"></div>
-                <i
-                  className={`${project.icon} text-white text-6xl z-10 transform group-hover:scale-110 transition-transform duration-500`}
-                ></i>
+                
+                {/* Ícone como componente React */}
+                <project.icon className="text-white text-6xl z-10 transform group-hover:scale-110 transition-transform duration-500" />
 
                 <div className="absolute top-4 right-4">
                   <span className="bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
-                    {project.category || "Full Stack"}
+                    {project.category}
                   </span>
                 </div>
               </div>
@@ -62,27 +62,44 @@ const Projects = () => {
 
                 <div className="flex space-x-4 pt-4 border-t border-gray-200">
                   <a
-                    href={project.githubUrl || "#"}
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 group/link"
                   >
-                    <i className="fab fa-github text-lg group-hover/link:scale-110 transition-transform duration-300"></i>
+                    <FaGithub className="text-lg group-hover/link:scale-110 transition-transform duration-300" />
                     <span>Código</span>
                   </a>
+                  
+                  {/* Link de Demo se existir */}
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-orange-600 transition-all duration-300 group/link"
+                    >
+                      <FaGlobe className="text-lg group-hover/link:scale-110 transition-transform duration-300" />
+                      <span>Demo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* <div className="text-center mt-16">
+        <div className="text-center mt-16">
           <a
-            href="#"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            href="https://github.com/GabrielRodriguez153?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 group"
           >
             <span>Ver Todos os Projetos</span>
-            <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+            <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
-        </div> */}
+        </div>
       </div>
     </section>
   );
