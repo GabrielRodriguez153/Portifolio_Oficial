@@ -67,13 +67,6 @@ const Projects = () => {
                     <i className="fab fa-github text-lg group-hover/link:scale-110 transition-transform duration-300"></i>
                     <span>Código</span>
                   </a>
-                  <a
-                    href={project.demoUrl || "#"}
-                    className="flex-1 flex items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-orange-600 transition-all duration-300 group/link shadow-md hover:shadow-lg"
-                  >
-                    <i className="fas fa-external-link-alt group-hover/link:scale-110 transition-transform duration-300"></i>
-                    <span>Demo</span>
-                  </a>
                 </div>
               </div>
             </div>
