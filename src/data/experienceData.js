@@ -1,5 +1,20 @@
 export const experienceData = [
   {
+    id: 5,
+    title: "Técnico em Informática - InfoTech Automação Comercial",
+    period: "Jan 2026 – Atualmente",
+    description:
+      "Como Técnico de Informática na Infotech, colaboro com a entrega de soluções completas de automação para empresas de varejo e comércio. Minha rotina envolve suporte técnico, instalação, manutenção e configuração de equipamentos e sistemas que agilizam e aprimoram os processos de vendas e gestão empresarial..",
+    icon: "fas fa-building",
+    type: "experience",
+    tags: [
+      "Automação Comercial",
+      "Suporte Técnico",
+      "Desenvolvimento de Software",
+      "Manutenção de Hardware",
+    ],
+  },
+  {
     id: 4,
     title: "Estagiário em Open Finance - Compass.UOL",
     period: "Jul 2025 – Dez 2025",
@@ -36,7 +51,7 @@ export const experienceData = [
   {
     id: 2,
     title: "Tecnólogo em Desenvolvimento de Software Multiplataforma",
-    period: "2023 - Atualmente",
+    period: "2023 - 2025",
     description:
       "Cursando o 6º semestre do Tecnólogo em Desenvolvimento de Software Multiplataforma na FATEC Registro, aprofundando competências em arquitetura de software, testes automatizados e práticas ágeis aplicadas ao desenvolvimento.",
     icon: "fas fa-university",
